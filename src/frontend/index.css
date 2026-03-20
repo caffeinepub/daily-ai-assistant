@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Font Faces ── */
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("/assets/fonts/InstrumentSerif-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("/assets/fonts/InstrumentSerif-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Sora";
+  src: url("/assets/fonts/Sora-VariableFont_wght.woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* ── Dark Palette (default) ── */
+    /* Deep charcoal with warm undertones */
+    --background: 0.14 0.008 260;
+    --foreground: 0.92 0.008 85;
+
+    /* Card surfaces */
+    --card: 0.17 0.01 260;
+    --card-foreground: 0.92 0.008 85;
+
+    /* Popover */
+    --popover: 0.2 0.012 260;
+    --popover-foreground: 0.92 0.008 85;
+
+    /* Gold-amber primary accent */
+    --primary: 0.72 0.14 72;
+    --primary-foreground: 0.12 0.01 260;
+
+    /* Subtle surface */
+    --secondary: 0.22 0.012 260;
+    --secondary-foreground: 0.78 0.01 85;
+
+    /* Muted tones */
+    --muted: 0.2 0.01 260;
+    --muted-foreground: 0.52 0.01 260;
+
+    /* Accent (slightly lighter) */
+    --accent: 0.24 0.015 260;
+    --accent-foreground: 0.88 0.01 85;
+
+    /* Destructive */
+    --destructive: 0.62 0.22 25;
+    --destructive-foreground: 0.95 0 0;
+
+    /* Borders and inputs */
+    --border: 0.26 0.015 260;
+    --input: 0.22 0.012 260;
+    --ring: 0.72 0.14 72;
+
+    /* Charts */
+    --chart-1: 0.72 0.14 72;
+    --chart-2: 0.62 0.12 210;
+    --chart-3: 0.55 0.13 165;
+    --chart-4: 0.65 0.15 320;
+    --chart-5: 0.7 0.11 45;
+
+    /* Sidebar */
+    --sidebar: 0.115 0.008 260;
+    --sidebar-foreground: 0.88 0.008 85;
+    --sidebar-primary: 0.72 0.14 72;
+    --sidebar-primary-foreground: 0.12 0.01 260;
+    --sidebar-accent: 0.2 0.012 260;
+    --sidebar-accent-foreground: 0.88 0.01 85;
+    --sidebar-border: 0.22 0.012 260;
+    --sidebar-ring: 0.72 0.14 72;
+
+    /* Custom tokens */
+    --gold: 0.72 0.14 72;
+    --gold-dim: 0.58 0.11 72;
+    --surface-raised: 0.19 0.012 260;
+    --surface-sunken: 0.11 0.006 260;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Sora", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3 {
+    font-family: "Instrument Serif", Georgia, serif;
+  }
+}
+
+@layer utilities {
+  .font-serif {
+    font-family: "Instrument Serif", Georgia, serif;
+  }
+  .font-sans {
+    font-family: "Sora", system-ui, sans-serif;
+  }
+
+  .text-gold {
+    color: oklch(var(--gold));
+  }
+
+  .bg-surface-raised {
+    background-color: oklch(var(--surface-raised));
+  }
+
+  .bg-surface-sunken {
+    background-color: oklch(var(--surface-sunken));
+  }
+
+  /* Custom scrollbar */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: oklch(var(--border));
+    border-radius: 2px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: oklch(var(--muted-foreground));
+  }
+
+  /* Gold divider line */
+  .gold-line {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      oklch(var(--gold) / 0.6),
+      transparent
+    );
+    height: 1px;
+  }
+
+  /* Message bubble styles */
+  .msg-user {
+    background: oklch(var(--primary) / 0.15);
+    border: 1px solid oklch(var(--primary) / 0.25);
+  }
+
+  .msg-assistant {
+    background: oklch(var(--surface-raised));
+    border: 1px solid oklch(var(--border));
+  }
+
+  /* Sidebar nav active state */
+  .nav-active {
+    background: oklch(var(--sidebar-accent));
+    color: oklch(var(--gold));
+  }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
